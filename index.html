@@ -167,6 +167,8 @@ div.f{margin-bottom:18px}
 .sheet .body > *{max-width:640px;margin-left:auto;margin-right:auto}
 .sheet footer{padding:10px 12px;background:var(--surface);border-top:2px solid var(--line);display:flex;justify-content:center}
 .sheet footer .btn{flex:1;max-width:420px}
+.sheet footer.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sheet footer.two .btn{max-width:none;font-size:17px;padding:10px 8px}
 .close{background:var(--surface-2);border:2px solid var(--line);min-height:52px;padding:0 14px;border-radius:14px;display:flex;align-items:center;gap:6px;color:var(--ink);font-size:17px;font-weight:600}
 .close svg{width:22px;height:22px}
 
@@ -185,7 +187,7 @@ div.f{margin-bottom:18px}
 .h-item .t span{font-variant-numeric:tabular-nums;font-weight:700;font-size:19px}
 .h-item .s{color:var(--muted);font-size:17px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .h-item .a{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.h-item .a .sbtn.danger{grid-column:1 / -1}
+
 .empty{text-align:center;color:var(--muted);padding:40px 16px;font-size:18px}
 
 .toast{position:fixed;left:50%;bottom:calc(150px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--surface);padding:14px 20px;border-radius:14px;font-size:18px;font-weight:600;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;width:max-content;max-width:calc(100% - 32px);text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.25)}
@@ -286,13 +288,13 @@ div.f{margin-bottom:18px}
 </section>
 
 <section class="sheet" id="sh-name" hidden aria-label="ตั้งชื่อไฟล์">
-  <header><h2>ตั้งชื่อไฟล์ PDF</h2><button class="close" data-act="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>ปิด</button></header>
+  <header><h2>ตั้งชื่อไฟล์</h2><button class="close" data-act="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>ปิด</button></header>
   <div class="body"><section class="card flat">
-    <label class="f" style="margin-bottom:12px"><span class="lb">ชื่อไฟล์</span><textarea class="inp" id="fname" rows="2" autocomplete="off" spellcheck="false" style="min-height:80px"></textarea><span class="hint">ไม่ต้องพิมพ์ .pdf ระบบเติมให้เอง ชื่อนี้คือชื่อที่ลูกค้าเห็นตอนได้รับไฟล์</span></label>
+    <label class="f" style="margin-bottom:12px"><span class="lb">ชื่อไฟล์</span><textarea class="inp" id="fname" rows="2" autocomplete="off" spellcheck="false" style="min-height:80px"></textarea><span class="hint">ไม่ต้องพิมพ์ .pdf หรือ .xlsx ระบบเติมให้เอง ชื่อนี้คือชื่อที่ลูกค้าเห็นตอนได้รับไฟล์</span></label>
     <button class="sbtn" data-act="name-reset">ใช้ชื่อตามปกติ</button>
   </section>
   <p class="note" id="fname-no" style="text-align:center"></p></div>
-  <footer><button class="btn pri big" data-act="pdf-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>บันทึก PDF</button></footer>
+  <footer class="two"><button class="btn sec big" data-act="xl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>บันทึก Excel</button><button class="btn pri big" data-act="pdf-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>บันทึก PDF</button></footer>
 </section>
 
 <section class="sheet" id="sh-settings" hidden aria-label="ตั้งค่า">
@@ -304,16 +306,10 @@ div.f{margin-bottom:18px}
 <section class="sheet" id="sh-history" hidden aria-label="ใบที่ออกแล้ว">
   <header><h2>ใบที่ออกแล้ว</h2><button class="close" data-act="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>ปิด</button></header>
   <div class="body">
-    <section class="card flat" style="margin-bottom:16px">
-      <span class="lb">สำรองข้อมูลเป็น Excel</span>
-      <p class="note" style="margin:0 0 12px">ส่งออกทุกใบเป็นไฟล์ Excel ที่มีสูตรคำนวณ แก้ราคาหรือจำนวนใน Excel ได้ แล้วนำกลับเข้าแอปหรือย้ายไปเครื่องใหม่ได้</p>
-      <div class="bk"><button class="btn out" data-act="xl-export">ส่งออกเป็น Excel</button><button class="btn out" data-act="xl-import">นำเข้าจาก Excel</button></div>
-    </section>
     <div id="hist-body"></div>
   </div>
 </section>
 
-<input type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="xl-in" class="sr" tabindex="-1" aria-hidden="true">
 <input type="file" accept="image/*" id="file-in" class="sr" tabindex="-1" aria-hidden="true">
 <div id="render-box" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -595,8 +591,8 @@ document.addEventListener('click',async e=>{
     case 'set-img':{imgTarget=b.dataset.which;photoTarget=null;openFile();break}
     case 'reset-img':{if(b.dataset.which==='sign')pendingSign='reset';else pendingStamp='reset';renderSettings(true);break}
     case 'h-open':case 'h-dup':case 'h-del':historyAction(act,b);break;
-    case 'xl-export':exportExcel();break;
-    case 'xl-import':{const i=document.getElementById('xl-in');i.value='';i.click();break}
+    case 'xl-go':makeExcel();break;
+    case 'h-xl':{const q=histCache.find(x=>x.id===b.closest('[data-q]').dataset.q);if(q)exportHistoryExcel(q,b);break}
   }
   Q.updatedAt=Date.now();saveDraft();
 });
@@ -727,6 +723,7 @@ async function renderHistory(){
       <div class="a">
         <button class="sbtn" data-act="h-open">เปิดแก้ไข</button>
         <button class="sbtn" data-act="h-dup">ทำใบใหม่จากใบนี้</button>
+        <button class="sbtn" data-act="h-xl">ส่งออก Excel</button>
         <button class="sbtn danger" data-act="h-del">ลบใบนี้</button>
       </div></div>`}).join('')+'</div>';
 }
@@ -909,6 +906,14 @@ function openNameSheet(){
   setTimeout(()=>{f.focus();try{f.setSelectionRange(0,f.value.length)}catch(e){}},80);
 }
 document.addEventListener('keydown',e=>{if(e.target&&e.target.id==='fname'&&e.key==='Enter'){e.preventDefault();makePdf()}});
+async function issueQuote(){
+  const fEl=document.getElementById('fname');
+  const typed=cleanFile(fEl&&!document.getElementById('sh-name').hidden?fEl.value:(Q.fileName||''));
+  const wasDefault=!typed||typed===defaultName();
+  if(!Q.no){Q.no=await allocateNo();renderBar()}
+  Q.fileName=wasDefault?null:typed;
+  Q.updatedAt=Date.now();LS.set('draft',Q);
+}
 async function makePdf(){
   if(busy)return;
   const err=validate();if(err){toast(err,3200);return}
@@ -917,12 +922,7 @@ async function makePdf(){
   btns.forEach(b=>{b.disabled=true;b.textContent='กำลังสร้าง…'});
   let box=document.getElementById('render-box');
   try{
-    const fEl=document.getElementById('fname');
-    const typed=cleanFile(fEl&&!document.getElementById('sh-name').hidden?fEl.value:(Q.fileName||''));
-    const wasDefault=!typed||typed===defaultName();
-    if(!Q.no){Q.no=await allocateNo();renderBar()}
-    Q.fileName=wasDefault?null:typed;
-    Q.updatedAt=Date.now();LS.set('draft',Q);
+    await issueQuote();
     const pages=await buildPages(Q,Q.no);
     pages.forEach(p=>box.appendChild(p));
     await Promise.all([...box.querySelectorAll('img')].map(i=>i.decode?i.decode().catch(()=>{}):0));
@@ -970,172 +970,195 @@ async function deliver(blob,filename,okMsg){
   setTimeout(()=>URL.revokeObjectURL(u),30000);toast(okMsg);
 }
 
-/* ---------- Excel backup (export / import) ---------- */
-const XL_SUM='สรุปใบเสนอราคา', XL_ITEMS='รายการสินค้า', XL_HELP='วิธีใช้';
+/* ---------- Excel export: one quotation per file, same layout as the PDF, live formulas ---------- */
 function loadExcelJS(){
   if(window.ExcelJS)return Promise.resolve();
   return new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js';s.onload=()=>res();s.onerror=()=>rej(new Error('load'));document.head.appendChild(s)});
 }
 function isoToDate(iso){if(!iso)return null;const [y,m,d]=iso.split('-').map(Number);return new Date(Date.UTC(y,m-1,d))}
-function cellToISO(v){
-  if(v instanceof Date)return v.getUTCFullYear()+'-'+String(v.getUTCMonth()+1).padStart(2,'0')+'-'+String(v.getUTCDate()).padStart(2,'0');
-  if(typeof v==='number'){return cellToISO(new Date(Math.round((v-25569)*86400000)))}
-  const m=String(v||'').trim().match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2,4})$/);
-  if(m){let y=+m[3];if(y<100)y+=2000;if(y>2400)y-=543;return y+'-'+String(+m[2]).padStart(2,'0')+'-'+String(+m[1]).padStart(2,'0')}
-  if(/^\d{4}-\d{2}-\d{2}/.test(String(v)))return String(v).slice(0,10);
-  return todayISO();
-}
-function xv(cell){
-  let v=cell.value;
-  if(v&&typeof v==='object'&&!(v instanceof Date)){
-    if('result' in v)v=v.result;else if(v.richText)v=v.richText.map(t=>t.text).join('');else if('text' in v)v=v.text;else v='';
-  }
-  return v==null?'':v;
-}
-async function exportExcel(){
-  if(busy)return;busy=true;toast('กำลังเตรียมไฟล์ Excel…',8000);
-  try{
-    await loadExcelJS();
-    const qs=(await store.listQuotes(true)).filter(q=>q.no).sort((a,b)=>(a.date||'').localeCompare(b.date||'')||String(a.no).localeCompare(String(b.no)));
-    if(!qs.length){toast('ยังไม่มีใบที่ออกเลขแล้วให้สำรอง');return}
-    const wb=new ExcelJS.Workbook();wb.creator='ใบเสนอราคา';wb.created=new Date();
-    const FONT={name:'Arial',size:11}, HEAD={name:'Arial',size:11,bold:true,color:{argb:'FFFFFFFF'}};
-    const HFILL={type:'pattern',pattern:'solid',fgColor:{argb:'FF14324A'}};
-    const YFILL={type:'pattern',pattern:'solid',fgColor:{argb:'FFFFF4CC'}};
-    const GFILL={type:'pattern',pattern:'solid',fgColor:{argb:'FFF1F4F6'}};
-    const thin={style:'thin',color:{argb:'FFD0D8DE'}};
-    const border={top:thin,left:thin,bottom:thin,right:thin};
-    const setup=(ws,cols)=>{
-      ws.columns=cols.map(c=>({header:c[0],key:c[1],width:c[2]}));
-      const h=ws.getRow(1);h.height=26;
-      h.eachCell(c=>{c.font=HEAD;c.fill=HFILL;c.alignment={vertical:'middle',horizontal:'center',wrapText:true};c.border=border});
-      ws.views=[{state:'frozen',ySplit:1}];
-    };
-    /* items sheet first so we know rows */
-    const ws=wb.addWorksheet(XL_SUM);
-    const wi=wb.addWorksheet(XL_ITEMS);
-    setup(wi,[['เลขที่เอกสาร','no',14],['วันที่','date',12],['ลูกค้า','cust',30],['ชุดที่','g',8],['ชื่อชุด / ตำแหน่ง','title',28],['ชื่อพนักงาน','for',30],['ลำดับ','i',8],['ชื่อสินค้า','desc',30],['ราคาต่อชิ้น','price',14],['จำนวน','qty',10],['รวม','amt',16]]);
-    let r=2;
-    qs.forEach(q=>{
-      let gno=0;
-      q.groups.forEach(g=>{
-        const items=visibleItems(g);if(!items.length&&!g.title&&!g.forLine)return;gno++;
-        items.forEach((it,ii)=>{
-          const row=wi.getRow(r);
-          const p=num(it.price),n=num(it.qty);
-          row.values=[q.no,isoToDate(q.date),q.customer.attn||'',gno,g.title||'',g.forLine||'',ii+1,it.desc||'',p,n,{formula:`I${r}*J${r}`,result:r2(p*n)}];
-          row.eachCell({includeEmpty:true},(c,ci)=>{if(ci>11)return;c.font=FONT;c.border=border;c.alignment={vertical:'middle',wrapText:ci===5||ci===6||ci===8}});
-          [5,6,8,9,10].forEach(ci=>row.getCell(ci).fill=YFILL);
-          row.getCell(2).numFmt='dd/mm/yyyy';row.getCell(9).numFmt='#,##0.00';row.getCell(10).numFmt='#,##0';row.getCell(11).numFmt='#,##0.00';
-          row.getCell(11).font={...FONT,bold:true};
-          [1,2,4,7].forEach(ci=>row.getCell(ci).alignment={vertical:'middle',horizontal:'center'});
-          r++;
-        });
-      });
-    });
-    wi.autoFilter={from:'A1',to:'K1'};
-    /* summary sheet */
-    setup(ws,[['เลขที่','no',14],['วันที่','date',12],['ลูกค้า','cust',32],['สำนักงานใหญ่ / สาขา','bt',16],['เลขที่สาขา','bn',11],['เลขผู้เสียภาษี','tax',17],['ที่อยู่','addr',40],['โทร','tel',14],['คิด VAT','vat',9],['รวมเป็นเงิน','sub',15],['VAT 7%','vatamt',13],['ยอดสุทธิ','grand',16],['หมายเหตุ','notes',30],['ชื่อไฟล์ PDF','fn',30],['รหัสระบบ (ห้ามแก้)','id',22]]);
-    const IS=`'${XL_ITEMS}'`;
-    qs.forEach((q,k)=>{
-      const rr=k+2,row=ws.getRow(rr),t=totals(q),c=q.customer;
-      row.values=[q.no,isoToDate(q.date),c.attn||'',c.branchType==='hq'?'สำนักงานใหญ่':c.branchType==='branch'?'สาขา':'',c.branchType==='branch'?pad5(c.branchNo):'',c.taxId||'',c.address||'',c.tel||'',q.vat?'ใช่':'ไม่',
-        {formula:`SUMIFS(${IS}!$K:$K,${IS}!$A:$A,A${rr})`,result:t.sub},
-        {formula:`IF(I${rr}="ใช่",ROUND(J${rr}*0.07,2),0)`,result:t.vat},
-        {formula:`J${rr}+K${rr}`,result:t.grand},
-        q.notes||'',q.fileName||'',q.id];
-      row.eachCell({includeEmpty:true},(cl,ci)=>{if(ci>15)return;cl.font=FONT;cl.border=border;cl.alignment={vertical:'middle',wrapText:ci===7||ci===13}});
-      [3,4,5,6,7,8,9,13,14].forEach(ci=>row.getCell(ci).fill=YFILL);
-      row.getCell(15).fill=GFILL;row.getCell(15).font={...FONT,color:{argb:'FF8796A2'},size:9};
-      row.getCell(2).numFmt='dd/mm/yyyy';[10,11,12].forEach(ci=>row.getCell(ci).numFmt='#,##0.00');
-      row.getCell(12).font={...FONT,bold:true};
-      row.getCell(5).numFmt='@';row.getCell(6).numFmt='@';
-      [1,2,4,5,9].forEach(ci=>row.getCell(ci).alignment={vertical:'middle',horizontal:'center'});
-      ws.getCell(`D${rr}`).dataValidation={type:'list',allowBlank:true,formulae:['"สำนักงานใหญ่,สาขา"']};
-      ws.getCell(`I${rr}`).dataValidation={type:'list',allowBlank:false,formulae:['"ใช่,ไม่"']};
-    });
-    const last=qs.length+1,tr=ws.getRow(last+1);
-    tr.getCell(1).value='รวมทั้งหมด';
-    tr.getCell(10).value={formula:`SUM(J2:J${last})`,result:r2(qs.reduce((s,q)=>s+totals(q).sub,0))};
-    tr.getCell(11).value={formula:`SUM(K2:K${last})`,result:r2(qs.reduce((s,q)=>s+totals(q).vat,0))};
-    tr.getCell(12).value={formula:`SUM(L2:L${last})`,result:r2(qs.reduce((s,q)=>s+totals(q).grand,0))};
-    [1,10,11,12].forEach(ci=>{const c=tr.getCell(ci);c.font={...FONT,bold:true};c.border={top:{style:'medium',color:{argb:'FF14324A'}}};if(ci>1)c.numFmt='#,##0.00'});
-    ws.autoFilter={from:'A1',to:'O1'};
-    /* help sheet */
-    const wh=wb.addWorksheet(XL_HELP);
-    wh.getColumn(1).width=100;
-    const help=[
-      ['วิธีใช้ไฟล์สำรองใบเสนอราคา',true],
-      ['สำรองเมื่อ '+new Date().toLocaleString('th-TH')+'  จำนวน '+qs.length+' ใบ',false],
-      ['',false],
-      ['ช่องสีเหลือง = แก้ไขได้  เช่น ราคาต่อชิ้น จำนวน ชื่อสินค้า ชื่อลูกค้า',false],
-      ['ช่อง "รวม", "รวมเป็นเงิน", "VAT 7%", "ยอดสุทธิ" มีสูตร จะคำนวณใหม่เองเมื่อแก้ราคาหรือจำนวน ไม่ต้องแก้',false],
-      ['ห้ามแก้ "เลขที่เอกสาร" และ "รหัสระบบ" เพราะแอปใช้จับคู่ตอนนำข้อมูลกลับเข้า',false],
-      ['เพิ่มรายการในใบเดิม: แทรกแถวในชีต "รายการสินค้า" ใส่เลขที่เอกสาร ชุดที่ และลำดับให้ตรงกับใบนั้น แล้วคัดลอกสูตรช่อง "รวม" จากแถวข้างบน',false],
-      ['คิด VAT: เลือก "ใช่" หรือ "ไม่" ในชีต "สรุปใบเสนอราคา"',false],
-      ['นำกลับเข้าแอป: เปิดแอป > ประวัติ > นำเข้าจาก Excel > เลือกไฟล์นี้  ใบที่เลขตรงกันจะถูกอัปเดต ใบที่ไม่มีในเครื่องจะถูกเพิ่ม',false],
-      ['รูปชุดไม่ได้อยู่ในไฟล์นี้ ถ้านำเข้าในเครื่องเดิม รูปเดิมยังอยู่ ถ้านำเข้าเครื่องใหม่ ต้องใส่รูปใหม่',false],
-    ];
-    help.forEach((h,i)=>{const c=wh.getCell(i+1,1);c.value=h[0];c.font={name:'Arial',size:h[1]?14:11,bold:h[1]};c.alignment={wrapText:true,vertical:'middle'}});
-    wh.getCell(4,1).fill=YFILL;
-    wb.views=[{activeTab:0}];
-    const buf=await wb.xlsx.writeBuffer();
-    const blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
-    busy=false;
-    await deliver(blob,'สำรองใบเสนอราคา-'+todayISO()+'.xlsx','ได้ไฟล์ Excel แล้ว '+qs.length+' ใบ');
-  }catch(e){console.error(e);toast('สร้างไฟล์ Excel ไม่สำเร็จ ตรวจอินเทอร์เน็ตแล้วลองใหม่',3800)}
-  finally{busy=false}
-}
-async function importExcel(file){
-  toast('กำลังอ่านไฟล์…',8000);
-  try{
-    await loadExcelJS();
-    const wb=new ExcelJS.Workbook();await wb.xlsx.load(await file.arrayBuffer());
-    const ws=wb.getWorksheet(XL_SUM),wi=wb.getWorksheet(XL_ITEMS);
-    if(!ws||!wi){toast('ไฟล์นี้ไม่ใช่ไฟล์สำรองจากแอปนี้',3800);return}
-    const map=new Map();
-    for(let r=2;r<=ws.rowCount;r++){
-      const row=ws.getRow(r);const no=String(xv(row.getCell(1))).trim();
-      if(!no||no==='รวมทั้งหมด')continue;
-      const bt=String(xv(row.getCell(4))).trim();
-      map.set(no,{id:String(xv(row.getCell(15))).trim()||uid(),no,date:cellToISO(xv(row.getCell(2))),
-        customer:{attn:String(xv(row.getCell(3))),branchType:bt==='สำนักงานใหญ่'?'hq':bt==='สาขา'?'branch':'',branchNo:bt==='สาขา'?pad5(xv(row.getCell(5))):'',
-          taxId:String(xv(row.getCell(6))),address:String(xv(row.getCell(7))),tel:String(xv(row.getCell(8)))},
-        vat:String(xv(row.getCell(9))).trim()!=='ไม่',notes:String(xv(row.getCell(13))),fileName:String(xv(row.getCell(14))).trim()||null,groups:[],_g:new Map()});
-    }
-    for(let r=2;r<=wi.rowCount;r++){
-      const row=wi.getRow(r);const no=String(xv(row.getCell(1))).trim();const q=map.get(no);if(!q)continue;
-      const desc=String(xv(row.getCell(8))).trim(),price=num(xv(row.getCell(9))),qty=num(xv(row.getCell(10)));
-      if(!desc&&!price&&!qty)continue;
-      const gk=String(xv(row.getCell(4))||'1');
-      if(!q._g.has(gk)){const g={id:uid(),title:String(xv(row.getCell(5))),forLine:String(xv(row.getCell(6))),photo:null,items:[],_o:[]};q._g.set(gk,g);q.groups.push(g)}
-      const g=q._g.get(gk);g.items.push({id:uid(),desc,price:String(price),qty:String(qty),_o:num(xv(row.getCell(7)))||g.items.length+1});
-    }
-    const existing=await store.listQuotes(true);
-    const byId=new Map(existing.map(q=>[q.id,q])),byNo=new Map(existing.map(q=>[q.no,q]));
-    let added=0,updated=0;const yy=beYY();let maxN=0;
-    const re=new RegExp('^'+yy+'-'+String(S.prefix||'').replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'-(\\d+)$');
-    for(const q of map.values()){
-      delete q._g;
-      q.groups.forEach(g=>{g.items.sort((a,b)=>a._o-b._o);g.items.forEach(i=>delete i._o);delete g._o});
-      if(!q.groups.length)q.groups=[newGroup()];
-      const old=byId.get(q.id)||byNo.get(q.no);
-      if(old){q.id=old.id;q.createdAt=old.createdAt||Date.now();
-        q.groups.forEach((g,i)=>{const og=old.groups[i];if(og&&og.photo&&(og.title||'')===(g.title||''))g.photo=og.photo});
-        updated++;}
-      else{q.createdAt=Date.now();added++}
-      q.updatedAt=(isoToDate(q.date)||new Date()).getTime()+(parseInt(String(q.no).replace(/\D/g,'').slice(-4),10)||0);
-      const m=String(q.no).match(re);if(m)maxN=Math.max(maxN,+m[1]);
-      const ok=await store.saveQuote(q);if(ok===false)throw new Error('full');
-      if(Q&&Q.id===q.id){Q=clone(q);LS.set('draft',Q);renderEditor()}
-    }
-    if(maxN&&maxN>=num(S.nextNo)){S.nextNo=maxN+1;S.counterYear=yy;await store.set('settings/main',S);LS.set('settings-cache',S);renderBar()}
-    await renderHistory();
-    toast('นำเข้าแล้ว '+(added+updated)+' ใบ (เพิ่มใหม่ '+added+', อัปเดต '+updated+')',4500);
-  }catch(e){console.error(e);toast(e&&e.message==='full'?'พื้นที่ในเครื่องเต็ม นำเข้าได้ไม่ครบ':'อ่านไฟล์ไม่สำเร็จ ตรวจว่าเป็นไฟล์สำรองจากแอปนี้',4000)}
-}
+function nameFor(q){return 'Quotation-'+safeName(q.customer.attn)+'-'+(q.no||previewNo())}
+function imgSize(src){return new Promise(res=>{const i=new Image();i.onload=()=>res({w:i.naturalWidth||1,h:i.naturalHeight||1});i.onerror=()=>res({w:1,h:1});i.src=src})}
+function colPx(w){return Math.round(w*7+5)}
+async function buildXlsx(q){
+  await loadExcelJS();
+  const t=totals(q),cu=q.customer,br=branchLabel(cu),co=S.company;
+  const NAVY='FF14324A',CYAN='FF1CB2EE',LINE='FFE3E9EE',MUTED='FF6B7C88',BODY='FF3D4D59';
+  const F=o=>Object.assign({name:'Tahoma',size:10,color:{argb:'FF1D2B36'}},o||{});
+  const fill=c=>({type:'pattern',pattern:'solid',fgColor:{argb:c}});
+  const wb=new ExcelJS.Workbook();wb.creator=co.nameTh;wb.created=new Date();
+  const ws=wb.addWorksheet('ใบเสนอราคา',{views:[{showGridLines:false}],
+    pageSetup:{paperSize:9,orientation:'portrait',fitToPage:true,fitToWidth:1,fitToHeight:0,horizontalCentered:true,
+      margins:{left:0.45,right:0.45,top:0.5,bottom:0.65,header:0.2,footer:0.3}}});
+  const W=[8,46,14,10,17];ws.columns=W.map(w=>({width:w}));
+  const put=(a,v,font,al,fl)=>{const c=ws.getCell(a);if(v!==undefined)c.value=v;if(font)c.font=font;if(al)c.alignment=al;if(fl)c.fill=fl;return c};
+  const lines=(s,per)=>Math.max(1,String(s||'').split('\n').reduce((n,l)=>n+Math.max(1,Math.ceil(l.length/per)),0));
 
-document.getElementById('xl-in').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(f)importExcel(f)});
+  /* company header */
+  ws.mergeCells('A1:C1');put('A1',co.nameTh+' (สำนักงานใหญ่)',F({size:13,bold:true,color:{argb:NAVY}}),{vertical:'middle'});
+  ws.mergeCells('D1:E2');put('D1','ใบเสนอราคา',F({size:20,bold:true,color:{argb:NAVY}}),{horizontal:'right',vertical:'middle'});
+  ws.getRow(1).height=24;
+  const small=F({size:9,color:{argb:'FF5A6B78'}});
+  [co.address,'เลขประจำตัวผู้เสียภาษี '+co.taxId,'โทร '+co.mobile,'Email: '+co.email].forEach((v,i)=>{const rr=i+2;ws.mergeCells(`A${rr}:C${rr}`);put('A'+rr,v,small,{vertical:'middle'});ws.getRow(rr).height=15});
+  ws.mergeCells('D3:E3');put('D3','QUOTATION',F({size:9.5,bold:true,color:{argb:'FF1597CF'}}),{horizontal:'right',vertical:'top'});
+  ws.getRow(6).height=4;put('A6',undefined,null,null,fill(CYAN));['B6','C6','D6','E6'].forEach(a=>put(a,undefined,null,null,fill(NAVY)));
+  ws.getRow(7).height=10;
+
+  /* customer + document box */
+  const LIGHT=fill('FFF2F6F9');
+  const cust=[
+    ['เสนอราคาถึง / Attn to',F({size:8.5,bold:true,color:{argb:MUTED}}),15],
+    [(cu.attn||'')+(br?' ('+br+')':''),F({size:12,bold:true,color:{argb:NAVY}}),18*lines((cu.attn||'')+(br?' ('+br+')':''),44)+2],
+    [cu.address||'',F({size:9.5,color:{argb:BODY}}),14*lines(cu.address,58)+2],
+    [[cu.taxId?'เลขผู้เสียภาษี '+cu.taxId:'',cu.tel?'โทร '+cu.tel:''].filter(Boolean).join('     '),F({size:9.5,color:{argb:BODY}}),16]
+  ];
+  cust.forEach((l,i)=>{const rr=8+i;ws.mergeCells(`A${rr}:B${rr}`);put('A'+rr,l[0],l[1],{vertical:'middle',wrapText:true,indent:1},LIGHT);ws.getRow(rr).height=Math.max(l[2],15)});
+  const kvb={style:'thin',color:{argb:'FFD6E0E7'}};
+  [['เลขที่ / No.',q.no,null],['วันที่ / Date',isoToDate(q.date),'d mmm yy']].forEach((kv,i)=>{
+    const rr=8+i;ws.mergeCells(`C${rr}:D${rr}`);
+    put('C'+rr,kv[0],F({size:9,color:{argb:MUTED}}),{vertical:'middle',indent:1});
+    const v=put('E'+rr,kv[1],F({bold:true,color:{argb:NAVY}}),{horizontal:'right',vertical:'middle'});if(kv[2])v.numFmt=kv[2];
+    ws.getCell('C'+rr).border={top:i?undefined:kvb,left:kvb,bottom:kvb};v.border={top:i?undefined:kvb,right:kvb,bottom:kvb};
+  });
+  ws.getRow(12).height=10;
+
+  /* table head */
+  const HR=13;
+  [['A','ลำดับ\nNo.','center'],['B','รายการ\nDescription','left'],['C','ราคา/หน่วย\nUnit price','right'],['D','จำนวน\nQty','center'],['E','จำนวนเงิน\nAmount','right']].forEach(([c,v,h])=>{
+    put(c+HR,v,F({bold:true,size:9.5,color:{argb:'FFFFFFFF'}}),{horizontal:h,vertical:'middle',wrapText:true,indent:h==='left'?1:0},fill(NAVY))});
+  ws.getRow(HR).height=30;
+
+  /* groups and items */
+  let r=HR+1;const first=r;const pics=[];
+  for(const g of q.groups){
+    const items=visibleItems(g);if(!items.length&&!g.title&&!g.forLine)continue;
+    if(g.title||g.forLine){
+      ws.mergeCells(`A${r}:E${r}`);
+      const rt=[];if(g.title)rt.push({text:g.title,font:F({bold:true,size:10.5,color:{argb:NAVY}})});
+      if(g.forLine)rt.push({text:(g.title?'\n':'')+g.forLine,font:F({size:9,color:{argb:'FF4A5C69'}})});
+      const c=put('A'+r,{richText:rt},null,{wrapText:true,vertical:'middle',indent:1},fill('FFEAF6FC'));
+      c.border={left:{style:'thick',color:{argb:CYAN}},bottom:{style:'thin',color:{argb:'FFD2E9F5'}}};
+      ws.getRow(r).height=(g.title?17:0)+(g.forLine?13*lines(g.forLine,110):0)+6;
+      r++;
+    }
+    const gStart=r;
+    items.forEach((it,i)=>{
+      const p=num(it.price),n=num(it.qty);
+      put('A'+r,i+1,F({color:{argb:'FF7A8A96'}}),{horizontal:'center',vertical:'middle'});
+      put('B'+r,it.desc,F(),{vertical:'middle',wrapText:true,indent:1});
+      put('C'+r,p,F(),{horizontal:'right',vertical:'middle'}).numFmt='#,##0.00';
+      put('D'+r,n,F(),{horizontal:'center',vertical:'middle'}).numFmt='#,##0.##';
+      put('E'+r,{formula:`C${r}*D${r}`,result:r2(p*n)},F({bold:true,color:{argb:NAVY}}),{horizontal:'right',vertical:'middle'}).numFmt='#,##0.00';
+      ['A','B','C','D','E'].forEach(col=>ws.getCell(col+r).border={bottom:{style:'thin',color:{argb:LINE}}});
+      ws.getRow(r).height=Math.max(19,14*lines(it.desc,g.photo?36:44)+5);
+      r++;
+    });
+    if(g.photo&&items.length)pics.push({src:g.photo,row:gStart,n:items.length});
+  }
+  const spacer=r;ws.getRow(spacer).height=10;r++;
+
+  /* totals (right) */
+  const kF=F({size:10,color:{argb:MUTED}}),vF=F({bold:true,color:{argb:NAVY}});
+  const tb={bottom:{style:'thin',color:{argb:LINE}}};
+  const subR=r;
+  ws.mergeCells(`C${r}:D${r}`);put('C'+r,'รวมเป็นเงิน',kF,{vertical:'middle',indent:1});
+  const sc=put('E'+r,{formula:`SUM(E${first}:E${spacer})`,result:t.sub},vF,{horizontal:'right',vertical:'middle'});sc.numFmt='#,##0.00';
+  ws.getCell('C'+r).border=tb;sc.border=tb;ws.getRow(r).height=20;r++;
+  let vatR=null;
+  if(q.vat){vatR=r;ws.mergeCells(`C${r}:D${r}`);put('C'+r,'ภาษีมูลค่าเพิ่ม 7%',kF,{vertical:'middle',indent:1});
+    const vc=put('E'+r,{formula:`ROUND(E${subR}*0.07,2)`,result:t.vat},vF,{horizontal:'right',vertical:'middle'});vc.numFmt='#,##0.00';
+    ws.getCell('C'+r).border=tb;vc.border=tb;ws.getRow(r).height=20;r++;}
+  ws.getRow(r).height=6;r++;
+  const gR=r;ws.mergeCells(`C${r}:D${r}`);
+  put('C'+r,{richText:[{text:'ยอดสุทธิ',font:F({bold:true,size:10.5,color:{argb:'FFFFFFFF'}})},{text:'\nGrand total (THB)',font:F({size:8,color:{argb:'FFB9D3E3'}})}]},null,{vertical:'middle',wrapText:true,indent:1},fill(NAVY));
+  const gc=put('E'+r,{formula:vatR?`E${subR}+E${vatR}`:`E${subR}`,result:t.grand},F({bold:true,size:13,color:{argb:'FFFFFFFF'}}),{horizontal:'right',vertical:'middle'},fill(NAVY));gc.numFmt='#,##0.00';
+  ws.getRow(r).height=32;r++;
+
+  /* amount in words + notes (left) */
+  ws.mergeCells(`A${subR}:B${subR}`);put('A'+subR,'จำนวนเงินตัวอักษร',F({size:8.5,bold:true,color:{argb:MUTED}}),{vertical:'bottom',indent:1},LIGHT);
+  const wEnd=vatR||subR+1;
+  const wStart=subR+1;
+  if(wEnd>=wStart){ws.mergeCells(`A${wStart}:B${Math.max(wEnd,wStart)}`)}
+  put('A'+wStart,{formula:`IFERROR("("&_xlfn.BAHTTEXT(E${gR})&")","")`,result:'('+bahtText(t.grand)+')'},F({bold:true,size:10,color:{argb:NAVY}}),{vertical:'top',wrapText:true,indent:1},LIGHT);
+  let nr=Math.max(wEnd,wStart)+2;
+  if(q.notes&&q.notes.trim()){
+    if(nr<=gR){/* notes sit beside the grand total */}
+    ws.mergeCells(`A${nr}:B${nr}`);put('A'+nr,'หมายเหตุ / เงื่อนไข',F({size:8.5,bold:true,color:{argb:MUTED}}),{vertical:'bottom',indent:1});
+    const nl=nr+1;ws.mergeCells(`A${nl}:B${nl}`);
+    put('A'+nl,q.notes.trim(),F({size:9.5,color:{argb:BODY}}),{vertical:'top',wrapText:true,indent:1});
+    ws.getRow(nl).height=Math.max(ws.getRow(nl).height||15,15*lines(q.notes.trim(),72)+4);
+    r=Math.max(r,nl+1);
+  }
+  r++;
+
+  /* signatures */
+  const sTop=r;for(let i=0;i<4;i++)ws.getRow(sTop+i).height=18;
+  const lineR=sTop+4;
+  ws.mergeCells(`A${lineR}:B${lineR}`);ws.mergeCells(`C${lineR}:E${lineR}`);
+  const ln={top:{style:'thin',color:{argb:'FF9AAAB6'}}};
+  ['A','B'].forEach(c=>ws.getCell(c+lineR).border=ln);['C','D','E'].forEach(c=>ws.getCell(c+lineR).border=ln);
+  const sig=[[`(..........................................)`,`(${S.signerName})`,F({bold:true,color:{argb:NAVY}})],
+    ['ผู้อนุมัติสั่งซื้อ / Accepted by','ผู้เสนอราคา / Authorized by',F({bold:true,size:9,color:{argb:BODY}})],
+    ['วันที่ ........../........../..........','วันที่ '+docDate(q.date),F({size:9,color:{argb:'FF5A6B78'}})]];
+  put('A'+lineR,sig[0][0],sig[0][2],{horizontal:'center',vertical:'top'});put('C'+lineR,sig[0][1],sig[0][2],{horizontal:'center',vertical:'top'});
+  ws.getRow(lineR).height=20;
+  sig.slice(1).forEach((s,i)=>{const rr=lineR+1+i;ws.mergeCells(`A${rr}:B${rr}`);ws.mergeCells(`C${rr}:E${rr}`);
+    put('A'+rr,s[0],s[2],{horizontal:'center'});put('C'+rr,s[1],s[2],{horizontal:'center'});ws.getRow(rr).height=15});
+  r=lineR+3;
+
+  /* images */
+  const rightW=colPx(W[2])+colPx(W[3])+colPx(W[4]);
+  const EMU=9525;
+  const toCol=(px,startCol)=>{let c=startCol;while(c<W.length-1&&px>colPx(W[c])){px-=colPx(W[c]);c++}return {c,off:Math.max(0,px)}};
+  const addPic=async(src,pos,row0,rowOffPx,wpx,hpx)=>{const ext=/^data:image\/png/.test(src)?'png':'jpeg';const id=wb.addImage({base64:src,extension:ext});
+    ws.addImage(id,{tl:{nativeCol:pos.c,nativeColOff:Math.round(pos.off*EMU),nativeRow:row0,nativeRowOff:Math.round(rowOffPx*EMU)},ext:{width:wpx,height:hpx},editAs:'oneCell'})};
+  const fit=async(src,maxW,maxH)=>{const s=await imgSize(src);const k=Math.min(maxW/s.w,maxH/s.h);return {w:Math.round(s.w*k),h:Math.round(s.h*k)}};
+  if(S.showStamp&&stampImg()){const d=await fit(stampImg(),136,40);await addPic(stampImg(),toCol((rightW-d.w)/2,2),sTop-1,2,d.w,d.h)}
+  if(S.showSign!==false&&signImg()){const d=await fit(signImg(),160,40);await addPic(signImg(),toCol((rightW-d.w)/2,2),sTop-1,54,d.w,d.h)}
+  for(const p of pics){const d=await fit(p.src,50,Math.max(20,p.n*25-6));await addPic(p.src,{c:1,off:colPx(W[1])-d.w-8},p.row-1,3,d.w,d.h)}
+
+  /* print setup + footer */
+  ws.pageSetup.printArea=`A1:E${r}`;
+  let hPt=0;for(let i=1;i<=r;i++)hPt+=ws.getRow(i).height||15;
+  if(hPt<=980)ws.pageSetup.fitToHeight=1;
+  ws.pageSetup.printTitlesRow=`${HR}:${HR}`;
+  const amp=s=>String(s||'').replace(/&/g,'&&');
+  ws.headerFooter={oddFooter:`&L&8${amp(co.nameTh)}  |  ${amp(co.mobile)}  |  ${amp(co.email)}&R&8 ${amp(q.no)}  หน้า &P/&N`};
+
+  /* guide sheet */
+  const wh=wb.addWorksheet('วิธีแก้ไข');wh.getColumn(1).width=100;
+  [['วิธีแก้ไขไฟล์นี้',true],
+   ['แก้ "ราคา/หน่วย" (คอลัมน์ C) หรือ "จำนวน" (คอลัมน์ D) ได้เลย ช่อง "จำนวนเงิน", "รวมเป็นเงิน", "ภาษีมูลค่าเพิ่ม 7%", "ยอดสุทธิ" และจำนวนเงินตัวอักษร จะคำนวณใหม่เอง',false],
+   ['แก้ชื่อสินค้า ชื่อลูกค้า หรือหมายเหตุ พิมพ์ทับในช่องได้เลย',false],
+   ['เพิ่มรายการ: คลิกขวาที่เลขแถวของรายการสุดท้าย เลือก "แทรก" แล้วคัดลอกสูตรช่อง "จำนวนเงิน" จากแถวข้างบนมาใส่ ยอดรวมจะนับรายการใหม่ให้เอง',false],
+   ['ลบรายการ: คลิกขวาที่เลขแถว เลือก "ลบ" ทั้งแถว',false],
+   ['หน้ากระดาษตั้งเป็น A4 แนวตั้งไว้แล้ว สั่งพิมพ์หรือบันทึกเป็น PDF จาก Excel ได้ทันที',false],
+   ['หมายเหตุ: ไฟล์นี้แยกจากแอป แก้ใน Excel แล้วจะไม่อัปเดตกลับเข้าแอป',false]
+  ].forEach((h,i)=>{const c=wh.getCell(i+1,1);c.value=h[0];c.font={name:'Tahoma',size:h[1]?13:10.5,bold:h[1]};c.alignment={wrapText:true,vertical:'middle'};wh.getRow(i+1).height=h[1]?24:32});
+  const buf=await wb.xlsx.writeBuffer();
+  return new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+}
+async function makeExcel(){
+  if(busy)return;
+  const err=validate();if(err){toast(err,3500);return}
+  busy=true;const btns=[...document.querySelectorAll('[data-act="xl-go"]')];const olds=btns.map(b=>b.innerHTML);
+  btns.forEach(b=>{b.disabled=true;b.textContent='กำลังสร้าง…'});
+  try{
+    await issueQuote();
+    const blob=await buildXlsx(Q);
+    saveHistory();
+    const nameOpen=!document.getElementById('sh-name').hidden;
+    await deliver(blob,(Q.fileName||defaultName())+'.xlsx','ได้ไฟล์ Excel แล้ว '+Q.no);
+    if(nameOpen)closeSheets();
+    renderEditor();
+  }catch(e){console.error(e);toast('สร้างไฟล์ Excel ไม่สำเร็จ ตรวจอินเทอร์เน็ตแล้วลองใหม่',3800)}
+  finally{busy=false;btns.forEach((b,i)=>{b.disabled=false;b.innerHTML=olds[i]})}
+}
+async function exportHistoryExcel(q,btn){
+  if(busy)return;busy=true;const old=btn.innerHTML;btn.disabled=true;btn.textContent='กำลังสร้าง…';
+  try{const blob=await buildXlsx(q);await deliver(blob,(q.fileName||nameFor(q))+'.xlsx','ได้ไฟล์ Excel แล้ว '+q.no)}
+  catch(e){console.error(e);toast('สร้างไฟล์ Excel ไม่สำเร็จ ตรวจอินเทอร์เน็ตแล้วลองใหม่',3800)}
+  finally{busy=false;if(btn.isConnected){btn.disabled=false;btn.innerHTML=old}}
+}
 
 /* ---------- boot ---------- */
 function boot(){
