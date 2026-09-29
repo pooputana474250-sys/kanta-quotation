@@ -436,7 +436,7 @@ function field(label,path,val,opts){
   const attrs=opts.area?'':` type="${opts.type||'text'}" value="${esc(val)}"`;
   return `<label class="f"><span class="lb">${label}${opts.opt?' <em>(ไม่ใส่ก็ได้)</em>':''}</span><${tag} class="inp${opts.cls?' '+opts.cls:''}" data-f="${path}"${attrs}${opts.mode?` inputmode="${opts.mode}"`:''} autocomplete="off">${opts.area?esc(val)+'</textarea>':''}${opts.hint?`<span class="hint">${opts.hint}</span>`:''}</label>`;
 }
-function metaOn(g){return !!(g.showMeta||g.title||g.forLine||g.photo)}
+function metaOn(g){return true}
 function step(n,t){return `<div class="step"><span class="n">${n}</span><h2>${t}</h2></div>`}
 function renderEditor(){
   const c=Q.customer;
@@ -471,7 +471,6 @@ function renderEditor(){
     }
     if(on){
       h+=`<div class="meta">
-        <div class="meta-head"><b>ข้อมูลชุด</b><button class="sbtn danger" data-act="hide-meta">✕ ไม่ใส่</button></div>
         ${gfield('ชื่อชุด / ตำแหน่ง',g,'title',g.title,'เช่น GSA Front - Female (3)')}
         ${gfield('ชื่อพนักงานที่ใส่',g,'forLine',g.forLine,'เช่น For K.Phimonwan, K.Orada')}
         <div class="photo-row">
