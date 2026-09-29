@@ -245,6 +245,7 @@ div.f{margin-bottom:18px}
 .words b{font-size:12.5px;color:#14324A}
 .notes{margin-top:12px;font-size:11.5px;color:#3D4D59;white-space:pre-wrap;line-height:1.55}
 .tots .kv{font-size:12.5px;padding:5px 2px}
+.tots .kv span small{font-size:10px;color:#8796A2;margin-left:3px}
 .grand{margin-top:8px;background:#14324A;color:#fff;border-radius:8px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center}
 .grand .l{font-size:12.5px;font-weight:600;line-height:1.2}
 .grand .l small{display:block;font-size:9.5px;font-weight:400;color:#B9D3E3}
@@ -800,8 +801,8 @@ function dFootA(q){
         ${q.notes&&q.notes.trim()?`<div class="notes"><div class="cap">หมายเหตุ / เงื่อนไข</div>${esc(q.notes.trim())}</div>`:''}
       </div>
       <div class="tots">
-        <div class="kv"><span>รวมเป็นเงิน</span><b>${money(t.sub)}</b></div>
-        ${q.vat?`<div class="kv"><span>ภาษีมูลค่าเพิ่ม 7%</span><b>${money(t.vat)}</b></div>`:''}
+        <div class="kv"><span>รวมเป็นเงิน / Subtotal</span><b>${money(t.sub)}</b></div>
+        ${q.vat?`<div class="kv"><span>ภาษีมูลค่าเพิ่ม 7% / VAT 7%</span><b>${money(t.vat)}</b></div>`:''}
         <div class="grand"><div class="l">ยอดสุทธิ<small>Grand total (THB)</small></div><div class="v">${money(t.grand)}</div></div>
       </div>
     </div></div>`;
@@ -1056,14 +1057,14 @@ async function buildXlsx(q){
   const spacer=r;ws.getRow(spacer).height=10;r++;
 
   /* totals (right) */
-  const kF=F({size:10,color:{argb:MUTED}}),vF=F({bold:true,color:{argb:NAVY}});
+  const kF=F({size:9,color:{argb:MUTED}}),vF=F({bold:true,color:{argb:NAVY}});
   const tb={bottom:{style:'thin',color:{argb:LINE}}};
   const subR=r;
-  ws.mergeCells(`C${r}:D${r}`);put('C'+r,'รวมเป็นเงิน',kF,{vertical:'middle',indent:1});
+  ws.mergeCells(`C${r}:D${r}`);put('C'+r,'รวมเป็นเงิน / Subtotal',kF,{vertical:'middle',indent:1});
   const sc=put('E'+r,{formula:`SUM(E${first}:E${spacer})`,result:t.sub},vF,{horizontal:'right',vertical:'middle'});sc.numFmt='#,##0.00';
   ws.getCell('C'+r).border=tb;sc.border=tb;ws.getRow(r).height=20;r++;
   let vatR=null;
-  if(q.vat){vatR=r;ws.mergeCells(`C${r}:D${r}`);put('C'+r,'ภาษีมูลค่าเพิ่ม 7%',kF,{vertical:'middle',indent:1});
+  if(q.vat){vatR=r;ws.mergeCells(`C${r}:D${r}`);put('C'+r,'ภาษีมูลค่าเพิ่ม 7% / VAT 7%',kF,{vertical:'middle',indent:1});
     const vc=put('E'+r,{formula:`ROUND(E${subR}*0.07,2)`,result:t.vat},vF,{horizontal:'right',vertical:'middle'});vc.numFmt='#,##0.00';
     ws.getCell('C'+r).border=tb;vc.border=tb;ws.getRow(r).height=20;r++;}
   ws.getRow(r).height=6;r++;
